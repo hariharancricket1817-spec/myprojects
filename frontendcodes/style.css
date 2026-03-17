@@ -1,0 +1,37 @@
+
+body{
+   display: flex;
+   gap: 20px;
+}
+.d2{
+    height: 500px;
+    width: 500px;
+    background-color: lightgreen;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 10px;
+    margin: 20px;
+}
+.d2 input{
+    height: 50px;
+    width: 40px;
+}
+.d2 button{
+    background-color: rgb(97, 97, 255);
+    padding: 13px;
+    border: solid 4px;
+}
+.ht{
+    display: flex;
+    justify-content: flex-end;
+}
+.bgt{
+    height: 1000px;
+    width: 1000px;
+    background-color: black;
+    display: flex;
+    justify-content: flex-end;
+    background-image: url(ChatGPT\ Image\ Mar\ 17\,\ 2026\,\ 03_58_09\ PM.png)
+}
