@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration</title>
+<link rel="stylesheet" href="student register.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Registration</h1>
+
+    <form onsubmit="return studentRegister()">
+
+        <input type="text" placeholder="Full Name" required>
+        <input type="text" placeholder="Register Number" required>
+        <input type="text" placeholder="Roll Number" required>
+        <input type="email" placeholder="Email ID" required>
+        <input type="text" placeholder="Class / Standard" required>
+        <input type="text" placeholder="Degree (or Std if school)" required>
+        <input type="text" placeholder="Department" required>
+        <input type="text" placeholder="HOD Name" required>
+        <input type="text" placeholder="Class Advisor Name" required>
+        <input type="tel" placeholder="Phone Number" id="phone" required>
+
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" id="pass" required>
+        <input type="password" placeholder="Re-enter Password" id="repass" required>
+
+        <button type="button" onclick="sendOTP()">Send OTP</button>
+
+        <div id="otpBox" style="display:none;">
+            <input type="text" placeholder="Enter OTP" id="otp">
+            <button type="submit">Register</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+function sendOTP() {
+    alert("OTP sent to your phone number (simulation)");
+    document.getElementById("otpBox").style.display = "block";
+}
+
+function studentRegister() {
+    let p = document.getElementById("pass").value;
+    let rp = document.getElementById("repass").value;
+
+    if(p !== rp){
+        alert("Passwords do not match!");
+        return false;
+    }
+
+    alert("Student Login ID Created Successfully!");
+    return true;
+}
+</script>
+
+</body>
+</html>

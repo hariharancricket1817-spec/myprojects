@@ -43,10 +43,10 @@ main {
 }
 
 /* CARDS */
-.card {
+.card1 {
     width: 280px;
     padding: 25px;
-    background: white;
+    background: rgb(59, 241, 39);
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
@@ -54,16 +54,33 @@ main {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.card img {
+.card1 img {
     width: 100px;
     margin-bottom: 15px;
 }
 
-.card:hover {
+.card1:hover {
     transform: scale(1.05);
-    background: #f1f1f1;
+    background: #77fb4f;
 }
-
+.card2 {
+     width: 280px;
+    padding: 25px;
+    background: rgb(253, 79, 35);
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.card2 img{
+     width: 100px;
+    margin-bottom: 15px;
+}
+.card2:hover{
+    transform: scale(1.05);
+    background: #fc5151;
+}
 /* FOOTER */
 footer {
     background: #0d6efd;
