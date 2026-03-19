@@ -3,9 +3,8 @@ from flask_mysqldb import MySQL
 import bcrypt
 from flask_cors import CORS
 
-
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # MYSQL CONFIG
 app.config['MYSQL_HOST'] = 'localhost'
@@ -18,51 +17,72 @@ mysql = MySQL(app)
 # ------------------ STUDENT REGISTER ------------------
 @app.route('/register_student', methods=['POST'])
 def register_student():
+
     data = request.json
-    print("Received Data:", data)  # 🔥 ADD THIS
+    print("Received Data:", data)
 
+    # 🔥 validation
+    if not data or not data.get('password'):
+        return jsonify({"message": "Invalid data"}), 400
 
-    password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt())
+    try:
+        # 🔐 hash password
+        password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt())
 
-    cur = mysql.connection.cursor()
-    cur.execute("""
-        INSERT INTO students 
-        (name, reg_no, roll_no, email, class, degree, department, hod_name, advisor_name, phone, username, password)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-    """, (
-        data['name'], data['reg_no'], data['roll_no'], data['email'],
-        data['class'], data['degree'], data['department'],
-        data['hod_name'], data['advisor_name'], data['phone'],
-        data['username'], password
-    ))
-    mysql.connection.commit()
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO students 
+            (name, reg_no, roll_no, email, class, degree, department, hod_name, advisor_name, phone, username, password)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        """, (
+            data['name'], data['reg_no'], data['roll_no'], data['email'],
+            data['class'], data['degree'], data['department'],
+            data['hod_name'], data['advisor_name'], data['phone'],
+            data['username'], password
+        ))
 
-    return jsonify({"message": "Student Registered Successfully"})
+        mysql.connection.commit()
+
+        return jsonify({"message": "Student Registered Successfully"})
+
+    except Exception as e:
+        print("ERROR:", e)
+        return jsonify({"message": "Database error"}), 500
+
 
 # ------------------ STAFF REGISTER ------------------
 @app.route('/register_staff', methods=['POST'])
 def register_staff():
+
     data = request.json
 
-    password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt())
+    try:
+        password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    cur = mysql.connection.cursor()
-    cur.execute("""
-        INSERT INTO staff 
-        (name, staff_id, department, subject, phone, username, password)
-        VALUES (%s,%s,%s,%s,%s,%s,%s)
-    """, (
-        data['name'], data['staff_id'], data['department'],
-        data['subject'], data['phone'],
-        data['username'], password
-    ))
-    mysql.connection.commit()
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO staff 
+            (name, staff_id, department, subject, phone, username, password)
+            VALUES (%s,%s,%s,%s,%s,%s,%s)
+        """, (
+            data['name'], data['staff_id'], data['department'],
+            data['subject'], data['phone'],
+            data['username'], password
+        ))
 
-    return jsonify({"message": "Staff Registered Successfully"})
+        mysql.connection.commit()
+
+        return jsonify({"message": "Staff Registered Successfully"})
+
+    except Exception as e:
+        print("ERROR:", e)
+        return jsonify({"message": "Database error"}), 500
+
 
 # ------------------ LOGIN ------------------
 @app.route('/login', methods=['POST'])
 def login():
+
     data = request.json
     username = data['username']
     password = data['password']
@@ -85,5 +105,7 @@ def login():
 
     return jsonify({"status": "error", "message": "Invalid Credentials"})
 
+
 if __name__ == '__main__':
     app.run(debug=True)
+   
