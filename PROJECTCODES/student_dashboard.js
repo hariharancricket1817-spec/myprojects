@@ -28,6 +28,9 @@ function loadContent(section) {
             <div class="card">
                 <p>No assignments yet</p>
             </div>
+            <div>
+                <button onclick="startTyping()">TYPE ASSIGNMENT</button>
+            </div>
         `;
     }
 
@@ -57,4 +60,7 @@ function startMock() {
 
 function logout() {
     window.location.href = "index.html";
+}
+ function startTyping() {
+    window.location.href = "typing_workspace.html";
 }

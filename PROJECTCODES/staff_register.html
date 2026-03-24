@@ -11,7 +11,7 @@
 <div class="container">
     <h1>Staff Registration</h1>
 
-    <form onsubmit="return staffRegister()">
+    <form>
 
         <input type="text" placeholder="Full Name" required>
         <input type="text" placeholder="Staff User ID" required>
@@ -27,7 +27,7 @@
 
         <div id="hodOtpBox" style="display:none;">
             <input type="text" placeholder="Enter HOD OTP">
-            <button type="submit">Register</button>
+            <a href="stafflogin.html" class="btn">Register</a>
         </div>
 
     </form>
@@ -50,6 +50,7 @@ function staffRegister() {
 
     alert("Staff Login ID Approved & Created!");
     return true;
+
 }
 </script>
 

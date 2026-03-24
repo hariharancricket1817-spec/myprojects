@@ -32,12 +32,16 @@
         <input type="password" id="pass" placeholder="Password" required>
         <input type="password" id="repass" placeholder="Re-enter Password" required>
 
-        <button type="button" onclick="studentRegister()">Register</button>
+        <button type="button" onclick="studentlogin()">Register</button>
 
     </form>
 </div>
 
-<script src="backend_connection.js"></script>
+<script>
+function studentlogin() {
+    window.location.href = "studentlogin.html";
+}
+</script>
 
 </body>
 </html>
