@@ -33,7 +33,7 @@ body {
     backdrop-filter: blur(1px);
     box-shadow: 0 0 25px rgba(0,0,0,0.4);
     text-align: center;
-    color: #fff;
+    color: #f40202;
 }
 
 .login-box h1 {
