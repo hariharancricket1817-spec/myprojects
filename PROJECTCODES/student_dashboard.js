@@ -59,7 +59,7 @@ function startMock() {
 }
 
 function logout() {
-    window.location.href = "index.html";
+    window.location.href = "mainpage.html";
 }
  function startTyping() {
     window.location.href = "typing_workspace.html";

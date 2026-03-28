@@ -208,5 +208,5 @@ function reject() {
 
 // LOGOUT
 function logout() {
-    window.location.href = "login.html";
+    window.location.href = "mainpage.html";
 }
