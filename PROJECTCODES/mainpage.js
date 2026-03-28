@@ -22,3 +22,4 @@ function goStaff(){
         window.location.href="stafflogin.html";
     },1500);
 }
+}
